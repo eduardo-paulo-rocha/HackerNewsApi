@@ -20,7 +20,8 @@ public static class BestStoriesEndpoints
         })
         .WithName("GetBestStories")
         .WithSummary("Returns the first n best stories sorted by score descending.")
-        .WithDescription("Retrieves the top n best stories from the Hacker News API, sorted by score in descending order.");
+        .WithDescription("Retrieves the top n best stories from the Hacker News API, sorted by score in descending order.")
+        .WithTags("Best Stories");
 
         return app;
     }
