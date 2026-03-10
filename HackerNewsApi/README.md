@@ -1,6 +1,6 @@
 # Hacker News Best Stories API
 
-A RESTful API built with ASP.NET Core that retrieves the details of the top _n_ "best stories" from the [Hacker News API](https://github.com/HackerNews/API), sorted by score in descending order.
+A RESTful API built with ASP.NET Core (Minimal APIs) that retrieves the details of the top _n_ "best stories" from the [Hacker News API](https://github.com/HackerNews/API), sorted by score in descending order.
 
 ## How to Run
 
@@ -15,7 +15,7 @@ cd HackerNewsApi
 dotnet run
 ```
 
-The API will start on `https://localhost:5001` (or the port shown in console output).
+The API will start on `https://localhost:5196` (or the port shown in console output).
 
 ### Usage
 
@@ -28,7 +28,7 @@ GET /api/beststories/{n}
 **Example:**
 
 ```bash
-curl https://localhost:5001/api/beststories/10
+curl https://localhost:5196/api/beststories/10
 ```
 
 **Response:**
@@ -53,6 +53,12 @@ curl https://localhost:5001/api/beststories/10
 - Stories that fail to load (e.g. deleted or network errors) are silently skipped rather than causing the entire request to fail.
 
 ## Design Decisions
+
+### Minimal APIs
+
+- The endpoint is registered in `Endpoints/BestStoriesEndpoints.cs` as an extension method on `IEndpointRouteBuilder`, following the recommended pattern for organising Minimal API endpoints in ASP.NET Core.
+- `Program.cs` stays minimal: it only wires up services and calls `app.MapBestStoriesEndpoints()`.
+- The `Controllers/` folder and `[ApiController]` infrastructure have been removed entirely.
 
 ### Caching
 

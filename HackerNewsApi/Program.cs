@@ -1,9 +1,8 @@
+using HackerNewsApi.Endpoints;
 using HackerNewsApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddHttpClient<IHackerNewsService, HackerNewsService>(client =>
@@ -14,9 +13,8 @@ builder.Services.AddHttpClient<IHackerNewsService, HackerNewsService>(client =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
-app.MapControllers();
+app.MapBestStoriesEndpoints();
 
 app.Run();
